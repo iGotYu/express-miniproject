@@ -38,4 +38,25 @@ viewResBtn.addEventListener('click', () => {
         .catch((error) => {
             console.erro(error);
         });
+ 
+
+        $.post("/tables", newTable)
+        .then(function (data) {
+            let reservation = data.reservation;
+            let counter = 0;
+
+            reservations.forEach(element => {
+                counter++;
+
+                if (counter <= 5) {
+                    let tableList = `${tableWell} + counter`;
+                    tableList.append(createTable(element, counter)); 
+                } else {
+                    let waitlist = $("#waitlistSection");
+                    waitlist.append(createTable(element, counter));
+                }
+            });
+            alert("Adding your reservation...");
+        });
 });
+
