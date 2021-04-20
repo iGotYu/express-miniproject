@@ -16,12 +16,12 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname,"./html/home.html"))
 })
 
-app.get("/tables", (req, res) => {
-    res.sendFile(path.join(__dirname, './html/table.html'));
+app.get("/table", (req, res) => {
+    res.sendFile(path.join(__dirname, "./html/table.html"));
 })
 
 app.get("/wait", (req, res) => {
-    res.sendFile(path.join(__dirname,'./html/form.html'));
+    res.sendFile(path.join(__dirname,"./html/form.html"));
 })
 
 app.get('api/tables', (req, res) => res.json(tables));
