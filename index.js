@@ -20,7 +20,7 @@ app.get("/tables", (req, res) => {
     res.sendFile(path.join(__dirname, './html/table.html'));
 })
 
-app.get("/wait", (req, res) => {
+app.get("/form", (req, res) => {
     res.sendFile(path.join(__dirname,'./html/form.html'));
 })
 
