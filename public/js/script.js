@@ -38,6 +38,7 @@ viewResBtn.addEventListener('click', () => {
         .catch((error) => {
             console.erro(error);
         });
+ 
 
         $.post("/tables", newTable)
         .then(function (data) {
