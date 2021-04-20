@@ -13,15 +13,32 @@ app.use(express.json());
 app.use(express.static("public"))
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname,"home.html"))
+    res.sendFile(path.join(__dirname,"./html/home.html"))
 })
 
-app.get("tables", (req, res) => {
-    res.sendFile(path.join(__dirname, 'table.html'));
+app.get("/tables", (req, res) => {
+    res.sendFile(path.join(__dirname, './html/table.html'));
 })
 
-app.get("wait", (req, res) => {
-    res.sendFile(path.join(__dirname,'form.html'));
+app.get("/wait", (req, res) => {
+    res.sendFile(path.join(__dirname,'./html/form.html'));
+})
+
+app.get('api/tables', (req, res) => res.json(tables));
+
+app.get('api/wait', (req, res) => res.json(form));
+
+app.get('api/tables/:tables', (req, res) =>{
+    const chosen = req.params.tables;
+
+    console.log(chosen);
+
+    for (let i = 0; i < tables.length; i++) {
+        if ( chosen === tables[i].routeName){
+            return res.json(tables[i]);
+        }
+    }
+    return res.json(false);
 })
 
 app.post ("/api/tables", (req, res) => {
@@ -43,6 +60,7 @@ app.post ("/api/form", (req, res) =>{
     wait.push(req.body.form);
     res.send(req.body.form);
 })
+
 
 app.listen(PORT,()=>{
     console.log("listening on port" + PORT)
